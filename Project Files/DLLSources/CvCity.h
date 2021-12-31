@@ -746,6 +746,8 @@ public:
 	
 	void writeDesyncLog(FILE *f) const;
 
+	std::vector<UnitTypes> getTeacherTypes() const;
+
 protected:
 	int m_iID;
 	int m_iX;

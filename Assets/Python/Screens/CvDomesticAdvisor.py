@@ -287,6 +287,74 @@ class CvDomesticAdvisor:
 	
 		# Citizen Headers
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][0] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN", ()).upper() + "</font>", self.nTableWidth * 3 / 4 )
+		
+		self.createSubpage(self.CITIZEN_STATE, 1)
+		self.CITIZEN_STATE_BUILDING_WIDTH = 50
+		self.CITIZEN_STATE_EDUCATION_WIDTH = 50
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_WB_BUILDINGS", ()).upper() + "</font>", self.CITIZEN_STATE_BUILDING_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 3, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_EDUCATION).getChar()) + "</font>", self.CITIZEN_STATE_EDUCATION_WIDTH )
+
+		professionCount = 51
+		rowOffset = 4
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 4, "<font=2>" +  "S01" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 5, "<font=2>" +  "S02" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 6, "<font=2>" +  "S03" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 7, "<font=2>" +  "S04" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 8, "<font=2>" +  "S05" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 9, "<font=2>" +  "S06" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 10, "<font=2>" +  "S07" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 11, "<font=2>" +  "S08" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 12, "<font=2>" +  "S09" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 13, "<font=2>" +  "S10" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 14, "<font=2>" +  "S11" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 15, "<font=2>" +  "S12" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 16, "<font=2>" +  "S13" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 17, "<font=2>" +  "S14" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 18, "<font=2>" +  "S15" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 19, "<font=2>" +  "S16" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 20, "<font=2>" +  "S17" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 21, "<font=2>" +  "S18" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 22, "<font=2>" +  "S19" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 23, "<font=2>" +  "S20" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 24, "<font=2>" +  "S21" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 25, "<font=2>" +  "S22" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 26, "<font=2>" +  "S23" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 27, "<font=2>" +  "S24" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 28, "<font=2>" +  "S25" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 29, "<font=2>" +  "S26" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 30, "<font=2>" +  "S27" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 31, "<font=2>" +  "S28" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 32, "<font=2>" +  "S29" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 33, "<font=2>" +  "S30" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 34, "<font=2>" +  "S31" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 35, "<font=2>" +  "S32" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 36, "<font=2>" +  "S33" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 37, "<font=2>" +  "S34" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 38, "<font=2>" +  "S35" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 39, "<font=2>" +  "S36" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 40, "<font=2>" +  "S37" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 41, "<font=2>" +  "S38" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 42, "<font=2>" +  "S39" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 43, "<font=2>" +  "S40" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 44, "<font=2>" +  "S41" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 45, "<font=2>" +  "S42" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 46, "<font=2>" +  "S43" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 47, "<font=2>" +  "S44" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 48, "<font=2>" +  "S45" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 49, "<font=2>" +  "S46" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 50, "<font=2>" +  "S47" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 51, "<font=2>" +  "S48" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 52, "<font=2>" +  "S49" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 53, "<font=2>" +  "S50" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 54, "<font=2>" +  "S51" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+
+#		for iProfession in range(professionCount + 1):	
+#			screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", rowOffset + iProfession, "<font=2>" +  localText.getText("TXT_KEY_PEDIA_CATEGORY_PROFESSION", ()).upper() + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
 			
 		
 		# Draw the city list...
@@ -639,7 +707,7 @@ class CvDomesticAdvisor:
 	def updateCitizenTable(self, pCity, iRow):
 		screen = CyGInterfaceScreen("DomesticAdvisor", CvScreenEnums.DOMESTIC_ADVISOR)
 
-		if(self.CurrentState == self.CITIZEN_STATE):
+		if(self.CurrentState == self.CITIZEN_STATE and self.CurrentPage == 0):
 			szState = self.StatePages[self.CurrentState][self.CurrentPage]
 			screen.addPanel("CitizenPanel" + str(iRow), u"", u"", True, False, 0, 0, self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH, 30, PanelStyles.PANEL_STYLE_EMPTY, WidgetTypes.WIDGET_GENERAL, -1, -1)
 			screen.attachControlToTableCell("CitizenPanel" + str(iRow), szState + "ListBackground", iRow, 2 )
@@ -664,6 +732,54 @@ class CvDomesticAdvisor:
 					screen.setTextAt("CitizenProfession" + str(iRow) + "-" + str(iCitizen), "CitizenPanel" + str(iRow), u"<font=2>" + u"%c" %(CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR))+ "</font>", CvUtil.FONT_RIGHT_JUSTIFY, iCitizen * iSpace +  (self.iCityButtonSize * 2 / 4) + self.iCityButtonSize/2, self.iCityButtonSize / 5, -0.3, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )#(iCitizen * iSpace) + (self.iCityButtonSize * 2 / 4), 0, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				
 				# R&R, Robert Surcouf, Rebellion Fix END
+		elif(self.CurrentState == self.CITIZEN_STATE and self.CurrentPage == 1):
+			szState = self.StatePages[self.CurrentState][self.CurrentPage]
+
+			ButtonSizePercentageProfession = 20
+			EducationBuildingID = self.getEducationBuilding(pCity)
+				
+			if( EducationBuildingID != -1 ):
+				screen.setTableInt(szState + "ListBackground", 2, iRow, "", gc.getBuildingInfo(EducationBuildingID).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, EducationBuildingID, -1, CvUtil.FONT_LEFT_JUSTIFY )
+			
+			screen.setTableInt(szState + "ListBackground", 3, iRow, "<font=2>" + unicode(pCity.calculateNetYield(YieldTypes.YIELD_EDUCATION)) + "</font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+
+#			screen.addPanel("CitizenPanel" + str(iRow), u"", u"", True, False, 0, 0, self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH, 30, PanelStyles.PANEL_STYLE_EMPTY, WidgetTypes.WIDGET_GENERAL, -1, -1)
+
+			cellOffset = 4
+			teacherCount = pCity.getTeacherCount()
+			iSpace = 35
+#			szButtonName = "CitizenGroupButton" + str(iRow) + "-" + str(7)
+#			screen.setImageButtonAt(szButtonName, "CitizenPanel" + str(iRow), gc.getUnitInfo(7).getButton(), 1 * iSpace, self.iCityButtonSize / 8, self.iCityButtonSize * ButtonSizePercentageProfession / 100 , self.iCityButtonSize * ButtonSizePercentageProfession / 100, WidgetTypes.WIDGET_CITIZEN, 0, pCity.getID())
+			for iTeacher in range(0, teacherCount):
+				iType = pCity.getTeacherAtIndex(iTeacher)
+				if iType == 0:
+					continue
+				screen.setTableInt(szState + "ListBackground", cellOffset + iTeacher, iRow, "", gc.getUnitInfo(iType).getButton(), WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+
+#				screen.attachControlToTableCell("CitizenPanel" + str(iRow), szState + "ListBackground", iRow, cellOffset + iTeacher )
+#				iType = pCity.getTeacherAtIndex(iTeacher)
+#				szButtonName = "CitizenGroupButton" + str(iRow) + "-" + str(iType)
+#				screen.setImageButtonAt(szButtonName, "CitizenPanel" + str(iRow), gc.getUnitInfo(iType).getButton(), 0, self.iCityButtonSize / 8, self.iCityButtonSize * ButtonSizePercentageProfession / 100 , self.iCityButtonSize * ButtonSizePercentageProfession / 100, WidgetTypes.WIDGET_CITIZEN, 0, pCity.getID())
+#				screen.setImageButtonAt(szButtonName, "CitizenPanel" + str(iRow), gc.getUnitInfo(iType).getButton(), iTeacher * iSpace, self.iCityButtonSize / 8, self.iCityButtonSize * ButtonSizePercentageProfession / 100 , self.iCityButtonSize * ButtonSizePercentageProfession / 100, WidgetTypes.WIDGET_CITIZEN, 0, pCity.getID())
+
+	def getEducationBuilding(self, pCity):
+		EducationBuildingSchoolhouseID = 94
+		EducationBuildingCollegeID = 95
+		EducationBuildingUniversityID = 96
+		EducationBuildingGreatUniversityID = 97
+
+		EducationBuildingID = -1
+		if( pCity.isHasBuilding(EducationBuildingSchoolhouseID) ):
+			EducationBuildingID = EducationBuildingSchoolhouseID
+		elif( pCity.isHasBuilding(EducationBuildingCollegeID) ):
+			EducationBuildingID = EducationBuildingCollegeID
+		elif( pCity.isHasBuilding(EducationBuildingUniversityID) ):
+			EducationBuildingID = EducationBuildingUniversityID
+		elif( pCity.isHasBuilding(EducationBuildingGreatUniversityID) ):
+			EducationBuildingID = EducationBuildingGreatUniversityID
+		return EducationBuildingID
+
+		
 	def updateRouteTable(self, pRoute, iRoute, iRow):
 		screen = CyGInterfaceScreen("DomesticAdvisor", CvScreenEnums.DOMESTIC_ADVISOR)
 
@@ -1093,7 +1209,7 @@ class CvDomesticAdvisor:
 			iMax = gc.getUserSettings().getDebugMaxGameFont() - 8483 + 1
 			if iMax <= 0:
 				# UserSettings didn't request a specific max. Use the lenght assumed by the game
-				iMax = self.maxNumGameFontID() - 8483 + 5
+				iMax = FontSymbols.MAX_NUM_SYMBOLS + CyGame().getSymbolID(FontSymbols.HAPPY_CHAR) - 8483 + 10
 			for iLine in range(iMax):
 				iID = iLine + 8483
 				screen.appendTableRow(szStateName)

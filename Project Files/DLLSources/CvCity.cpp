@@ -12896,3 +12896,35 @@ void CvCity::writeDesyncLog(FILE *f) const
 		}
 	}
 }
+
+std::vector<UnitTypes> CvCity::getTeacherTypes() const
+{
+	if (false == NBMOD_GetCityTeachLevel())
+	{
+		return std::vector<UnitTypes>();
+	}
+
+	std::vector<UnitTypes> teacherTypes;
+	for (int iUnitClass = 0; iUnitClass < GC.getNumUnitClassInfos(); iUnitClass++)
+	{
+		UnitTypes eUnit = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getCivilizationUnits(iUnitClass);
+		if (eUnit == NO_UNIT)
+		{
+			continue;
+		}
+
+		CvUnitInfo& kUnit = GC.getUnitInfo(eUnit);
+		if (kUnit.NBMOD_GetTeachLevel() < 1 || kUnit.NBMOD_GetTeachLevel() > NBMOD_GetCityTeachLevel())
+		{
+			continue;
+		}
+
+		int iPrice = getSpecialistTuition(eUnit);
+
+		if (iPrice >= 0)
+		{
+			teacherTypes.push_back(eUnit);
+		}
+	}
+	return teacherTypes;
+}

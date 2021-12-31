@@ -1507,3 +1507,30 @@ python::tuple CyCity::isOrderWaitingForYield(int /*YieldTypes*/ eYield)
 	
 	return python::make_tuple();
 }
+
+int CyCity::getTeacherCount() const
+{
+	if (NULL == m_pCity)
+	{
+		return 0;
+	}
+
+	return m_pCity->getTeacherTypes().size();
+}
+
+int CyCity::getTeacherAtIndex(const int index) const
+{
+	if (NULL == m_pCity)
+	{
+		return -1;
+	}
+
+	std::vector<UnitTypes> teachers = m_pCity->getTeacherTypes();
+	if (index < 0 || index >= teachers.size())
+	{
+		return -1;
+	}
+	return teachers[index];
+}
+
+

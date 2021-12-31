@@ -347,6 +347,9 @@ public:
 
 	python::tuple isOrderWaitingForYield(int /*YieldTypes*/ eYield);
 
+	int getTeacherCount() const;
+	int getTeacherAtIndex(const int index) const;
+	
 private:
 	CvCity* m_pCity;
 };

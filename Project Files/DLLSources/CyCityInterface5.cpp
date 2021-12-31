@@ -112,5 +112,7 @@ void CyCityPythonInterface5(python::class_<CyCity>& x)
 		// transport feeder - end - Nightinggale
 
 		.def("isOrderWaitingForYield", &CyCity::isOrderWaitingForYield, "python::tuple isOrderWaitingForYield(int /*YieldTypes*/ eYield)")
-		;
+		.def("getTeacherCount", &CyCity::getTeacherCount, "int getTeacherCount() const")
+		.def("getTeacherAtIndex", &CyCity::getTeacherAtIndex, "int getTeacherAtIndex(const int index) const")
+			;
 }
