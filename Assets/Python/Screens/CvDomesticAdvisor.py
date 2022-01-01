@@ -1124,7 +1124,7 @@ class CvDomesticAdvisor:
 			elif iData1 == self.PRODUCTION_STATE:
 				return localText.getText("TXT_KEY_CONCEPT_PRODUCTION", ())
 			elif iData1 == self.EDUCATION_STATE:
-				return localText.getText("TXT_KEY_CONCEPT_PRODUCTION", ())
+				return localText.getText("TXT_KEY_CONCEPT_EDUCATION", ())
 			elif iData1 == self.BUILDING_STATE:
 				return localText.getText("TXT_KEY_BUILDINGS", ())
 			elif iData1 == self.WAREHOUSE_STATE:
