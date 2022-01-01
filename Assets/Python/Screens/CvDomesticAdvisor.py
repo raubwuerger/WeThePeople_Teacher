@@ -283,7 +283,9 @@ class CvDomesticAdvisor:
 		rowOffset = 4
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 4, "<font=2>" +  "S01" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 5, "<font=2>" +  "S02" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 6, "<font=2>" +  "S03" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+#		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 6, "<font=2>" +  "S03" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 6, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_STONE).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
+
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 7, "<font=2>" +  "S04" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 8, "<font=2>" +  "S05" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 9, "<font=2>" +  "S06" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
@@ -338,6 +340,30 @@ class CvDomesticAdvisor:
 
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 54, "<font=2>" +  "S51" + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / professionCount )
 
+        #Education Header
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][0] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN", ()).upper() + "</font>", self.nTableWidth * 3 / 4 )
+		
+		self.createSubpage(self.EDUCATION_STATE, 1)
+		self.CITIZEN_STATE_EDUCATION_WIDTH = 50
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_WB_BUILDINGS", ()).upper() + "</font>", self.CITIZEN_STATE_BUILDING_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 3, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_EDUCATION).getChar()) + "</font>", self.CITIZEN_STATE_EDUCATION_WIDTH )
+
+		self.EDUCATION_COUNT = 12
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 4, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_FOOD).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 5, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_FOOD).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 6, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_LUMBER).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 7, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_STONE).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 8, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_ORE).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 9, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GRAPES).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 10, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GEMS).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 11, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_HAMMERS).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 12, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_TOOLS).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 13, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CULTURE).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 14, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_SILVER).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+		screen.setTableColumnHeader( self.StatePages[self.EDUCATION_STATE][1] + "ListBackground", 15, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CULTURE).getChar()) + "</font>", (self.nTableWidth - self.CITIZEN_STATE_BUILDING_WIDTH - self.CITIZEN_STATE_EDUCATION_WIDTH) / self.EDUCATION_COUNT )
+        
 		# Draw the city list...
 		self.drawContents()
 		
