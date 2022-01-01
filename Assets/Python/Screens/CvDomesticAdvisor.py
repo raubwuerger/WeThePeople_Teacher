@@ -77,10 +77,8 @@ class CvDomesticAdvisor:
 #VET NewCapacity - begin 2/4
 		if self.bNewCapacity:
 			##VET 
-			##self.iWareHouseW = 120
 			self.iWareHouseW = 100
 		else:
-			## VET self.iWareHouseW = 60
 			self.iWareHouseW = 40
 #VET NewCapacity - end 2/4
 		## R&R, Robert Surcouf,  Domestic Advisor Screen - End
@@ -213,7 +211,7 @@ class CvDomesticAdvisor:
 		#GeneralState Headers
 		szListName = self.StatePages[self.GENERAL_STATE][3] + "ListBackground"
 		# Total Happiness
-		screen.setTableColumnHeader( szListName, 2, "<font=2>" + (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_HAPPINESS).getChar()) +"(TOTAL)" +"</font>", (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / 14 )#
+		screen.setTableColumnHeader( szListName, 2, "<font=2>" + (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_HAPPINESS).getChar()) +"(TOTAL)" +"</font>", (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / 14 )
 		# Happiness from Crosses
 		screen.setTableColumnHeader( szListName, 5, "<font=2>" + (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_HAPPINESS).getChar()) +"(" +(u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CROSSES).getChar()) +")" + "</font>", (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / 14 )
 		# Happiness from Bells
@@ -346,7 +344,6 @@ class CvDomesticAdvisor:
 	def drawButtons(self):
 		screen = CyGInterfaceScreen( "DomesticAdvisor", CvScreenEnums.DOMESTIC_ADVISOR )
 
-		#for iState in range(len(self.StateTypes)):
 		for iState in range(len(self.StatePages)):
 			for PageName in self.StatePages[iState]:
 				szStateName = PageName + "ListBackground"
@@ -688,7 +685,7 @@ class CvDomesticAdvisor:
 					screen.setImageButtonAt("CitizenProfession" + str(iRow) + "-" + str(iCitizen), "CitizenPanel" + str(iRow), gc.getProfessionInfo(pCitizen.getProfession()).getButton(), (iCitizen * iSpace) + (self.iCityButtonSize * 2 / 4), 0, self.iCityButtonSize * ButtonSizePercentage / 100 , self.iCityButtonSize * ButtonSizePercentage / 100, WidgetTypes.WIDGET_CITIZEN, pCitizen.getID(), pCity.getID())
 				else:
 					screen.setImageButtonAt(szButtonName, "CitizenPanel" + str(iRow), gc.getUnitInfo(iType).getButton(), iCitizen * iSpace, self.iCityButtonSize / 5, self.iCityButtonSize * 4 / 5, self.iCityButtonSize * 4 / 5, WidgetTypes.WIDGET_GENERAL, -1, -1)
-					screen.setTextAt("CitizenProfession" + str(iRow) + "-" + str(iCitizen), "CitizenPanel" + str(iRow), u"<font=2>" + u"%c" %(CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR))+ "</font>", CvUtil.FONT_RIGHT_JUSTIFY, iCitizen * iSpace +  (self.iCityButtonSize * 2 / 4) + self.iCityButtonSize/2, self.iCityButtonSize / 5, -0.3, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )#(iCitizen * iSpace) + (self.iCityButtonSize * 2 / 4), 0, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+					screen.setTextAt("CitizenProfession" + str(iRow) + "-" + str(iCitizen), "CitizenPanel" + str(iRow), u"<font=2>" + u"%c" %(CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR))+ "</font>", CvUtil.FONT_RIGHT_JUSTIFY, iCitizen * iSpace +  (self.iCityButtonSize * 2 / 4) + self.iCityButtonSize/2, self.iCityButtonSize / 5, -0.3, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				
 				# R&R, Robert Surcouf, Rebellion Fix END
 		elif(self.CurrentState == self.CITIZEN_STATE and self.CurrentPage == 1):
@@ -1096,7 +1093,6 @@ class CvDomesticAdvisor:
 		return self.MAX_YIELDS_IN_A_PAGE * self.CurrentPage
 		
 	def YieldEnd(self):
-		#return min((self.MAX_YIELDS_IN_A_PAGE * (self.CurrentPage + 1)) - 1, YieldTypes.YIELD_LUXURY_GOODS + 1)
 		return min((self.MAX_YIELDS_IN_A_PAGE * (self.CurrentPage + 1)), YieldTypes.YIELD_LUXURY_GOODS + 1)
 	
 	# auto-generated list creation - start - Nightinggale
@@ -1119,12 +1115,10 @@ class CvDomesticAdvisor:
 			screen = CyGInterfaceScreen( "DomesticAdvisor", CvScreenEnums.DOMESTIC_ADVISOR )
 			szStateName = self.StatePages[iState][iPage] + "ListBackground"
 			## R&R, Robert Surcouf,  Domestic Advisor Screen START
-			#screen.addTableControlGFC(szStateName, 22, (self.nScreenWidth - self.nTableWidth) / 2, 60, self.nTableWidth, self.nTableHeight, True, False, self.iCityButtonSize, self.iCityButtonSize, TableStyles.TABLE_STYLE_STANDARD )
 			screen.addTableControlGFC(szStateName, self.MAX_YIELDS_IN_A_PAGE + 4, (self.nScreenWidth - self.nTableWidth) / 2, 60, self.nTableWidth, self.nTableHeight, True, False, self.iCityButtonSize, self.iCityButtonSize, TableStyles.TABLE_STYLE_STANDARD )
 			screen.setStyle(szStateName, "Table_StandardCiv_Style")
 			screen.hide(szStateName)
 			screen.setTableColumnHeader(szStateName, 0, "", 45 )
-			#screen.setTableColumnHeader(szStateName, 0, "", 56 )
 			## R&R, Robert Surcouf,  Domestic Advisor Screen END
 			screen.setTableColumnHeader(szStateName, 1, "<font=2>" + localText.getText("TXT_KEY_DOMESTIC_ADVISOR_NAME", ()).upper() + "</font>", self.CITY_NAME_COLUMN_WIDTH - 56 )
 
@@ -1137,7 +1131,6 @@ class CvDomesticAdvisor:
 				screen.enableSort(szStateName)
 			
 			for iCity in range(num_cities):
-			# for iCity in range(len(self.Cities)):
 			# total production page - end - Nightinggale
 				screen.appendTableRow(szStateName)
 				screen.setTableRowHeight(szStateName, iCity, self.ROW_HIGHT)
