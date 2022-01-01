@@ -10,6 +10,7 @@ import ImportExportAdvisor
 import ProductionAdvisor
 import NativeAdvisor
 import WarehouseAdvisor
+import EducationAdvisor
 
 
 ## I rewrote most of the page to remove all hardcoded values
@@ -130,6 +131,7 @@ class CvDomesticAdvisor:
 		self.CITIZEN_STATE            = self.addButton("CitizenState",           "INTERFACE_CITY_CITIZEN_BUTTON")
 		self.TOTAL_PRODUCTION_STATE   = self.addButton("TotalProductionState",   "INTERFACE_TOTAL_PRODUCTION_BUTTON")  # total production page - Nightinggale
 		self.TRADEROUTE_STATE         = self.addButton("TradeRouteState",        "INTERFACE_IMPORT_EXPORT_BUTTON")
+		self.EDUCATION_STATE          = self.addButton("EducationState",         "INTERFACE_TEACHER_LIST"            , EducationAdvisor.EducationAdvisor(self))
 		self.NATIVE_STATE             = self.addButton("NativeState",            "INTERFACE_NATIVE_BUTTON"           , NativeAdvisor.NativeAdvisor(self))
 		
 		if (gc.getUserSettings().getDebugMaxGameFont() > 0):
@@ -486,6 +488,19 @@ class CvDomesticAdvisor:
 			screen.setTableText(szState + "ListBackground", 17, i, "<font=2>" + pLoopCity.getProductionName() + " (" + str(pLoopCity.getGeneralProductionTurnsLeft()) + ")" + "</font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 
 		elif(self.CurrentState == self.PRODUCTION_STATE):
+			start = self.YieldStart()
+			for iYield in range(start, self.YieldEnd()):
+				iNetYield = pLoopCity.calculateNetYield(iYield)
+				szText = unicode(iNetYield)
+				if iNetYield > 0:
+					szText = localText.getText("TXT_KEY_COLOR_POSITIVE", ()) + u"+" + szText + localText.getText("TXT_KEY_COLOR_REVERT", ())
+				elif iNetYield < 0:
+					szText = localText.getText("TXT_KEY_COLOR_NEGATIVE", ()) + szText + localText.getText("TXT_KEY_COLOR_REVERT", ())
+				elif iNetYield == 0:
+					szText = ""
+				screen.setTableInt(szState + "ListBackground", iYield - start + 2, i, "<font=1>" + szText + "<font/>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+				
+		elif(self.CurrentState == self.EDUCATION_STATE):
 			start = self.YieldStart()
 			for iYield in range(start, self.YieldEnd()):
 				iNetYield = pLoopCity.calculateNetYield(iYield)
@@ -1107,6 +1122,8 @@ class CvDomesticAdvisor:
 			if iData1 == self.GENERAL_STATE:
 				return localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_GENERAL", ())
 			elif iData1 == self.PRODUCTION_STATE:
+				return localText.getText("TXT_KEY_CONCEPT_PRODUCTION", ())
+			elif iData1 == self.EDUCATION_STATE:
 				return localText.getText("TXT_KEY_CONCEPT_PRODUCTION", ())
 			elif iData1 == self.BUILDING_STATE:
 				return localText.getText("TXT_KEY_BUILDINGS", ())
