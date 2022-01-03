@@ -4,6 +4,8 @@ from CvPythonExtensions import *
 import CvUtil
 import ScreenInput
 import CvScreenEnums
+import time
+import re
 
 import BuildingAdvisor
 import ImportExportAdvisor
@@ -274,11 +276,6 @@ class CvDomesticAdvisor:
 		self.createSubpage(self.CITIZEN_STATE, 3)
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][0] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN", ()).upper() + "</font>", self.nTableWidth * 3 / 4 )
 
-        self.drawEducationHeader()
-
-		self.drawContents()
-		
-	def drawEducationHeader(self):
 		CITIZEN_STATE_WIDTH = 50
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_WB_BUILDINGS", ()).upper() + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 3, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_EDUCATION).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
@@ -342,6 +339,8 @@ class CvDomesticAdvisor:
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 10, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CROSSES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 11, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_TRADE_GOODS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 
+		self.drawContents()
+		
 	def drawContents(self):
         # Function to draw the contents of the cityList passed in
 		# Get the screen and the player
@@ -689,7 +688,7 @@ class CvDomesticAdvisor:
 					screen.setTextAt("CitizenProfession" + str(iRow) + "-" + str(iCitizen), "CitizenPanel" + str(iRow), u"<font=2>" + u"%c" %(CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR))+ "</font>", CvUtil.FONT_RIGHT_JUSTIFY, iCitizen * iSpace +  (self.iCityButtonSize * 2 / 4) + self.iCityButtonSize/2, self.iCityButtonSize / 5, -0.3, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				
 				# R&R, Robert Surcouf, Rebellion Fix END
-		elif(self.CurrentState == self.CITIZEN_STATE and self.CurrentPage == 1):
+		elif(self.CurrentState == self.CITIZEN_STATE and self.CurrentPage >= 1):
 			szState = self.StatePages[self.CurrentState][self.CurrentPage]
 
 			ButtonSizePercentageProfession = 20
@@ -704,7 +703,9 @@ class CvDomesticAdvisor:
 			teacherCount = pCity.getTeacherCount()
 			iSpace = 35
 			for iTeacher in range(0, teacherCount):
+#				print("Teachertype: %s - %d" %(gc.getUnitInfo(iType).getName(),pCity.getTeacherAtIndex(iTeacher)))
 				iType = pCity.getTeacherAtIndex(iTeacher)
+				print("Teachertype: %s - %s - %d" %(gc.getUnitInfo(iType).getDescription(),gc.getUnitInfo(iType).getUnitClassType(),pCity.getTeacherAtIndex(iTeacher)))
 				if iType == 0:
 					continue
 				screen.setTableInt(szState + "ListBackground", cellOffset + iTeacher, iRow, "", gc.getUnitInfo(iType).getButton(), WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
