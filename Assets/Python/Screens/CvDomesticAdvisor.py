@@ -271,9 +271,14 @@ class CvDomesticAdvisor:
 					screen.setTableColumnHeader( self.StatePages[self.BUILDING_STATE][iPage] + "ListBackground", iBuildingOnPage + 2, "<font=2> " + (u" %c" %  gc.getSpecialBuildingInfo(iSpecial).getChar())         + "</font>", (self.BUILDING_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
 	
 		# Citizen Headers
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][0] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN", ()).upper() + "</font>", self.nTableWidth * 3 / 4 )
-		
 		self.createSubpage(self.CITIZEN_STATE, 3)
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][0] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_DOMESTIC_ADVISOR_STATE_CITIZEN", ()).upper() + "</font>", self.nTableWidth * 3 / 4 )
+
+        self.drawEducationHeader()
+
+		self.drawContents()
+		
+	def drawEducationHeader(self):
 		CITIZEN_STATE_WIDTH = 50
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_WB_BUILDINGS", ()).upper() + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 3, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_EDUCATION).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
@@ -289,7 +294,6 @@ class CvDomesticAdvisor:
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 13, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_TOOLS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 14, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CULTURE).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 15, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_BELLS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-
 
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_WB_BUILDINGS", ()).upper() + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 3, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_EDUCATION).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
@@ -338,31 +342,8 @@ class CvDomesticAdvisor:
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 10, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CROSSES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 11, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_TRADE_GOODS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 
-		self.drawContents()
-		
-	def drawButtons(self):
-		screen = CyGInterfaceScreen( "DomesticAdvisor", CvScreenEnums.DOMESTIC_ADVISOR )
-
-		for iState in range(len(self.StatePages)):
-			for PageName in self.StatePages[iState]:
-				szStateName = PageName + "ListBackground"
-				## R&R, Robert Surcouf,  Domestic Advisor Screen START
-				screen.setImageButton(szStateName + "Button", ArtFileMgr.getInterfaceArtInfo(self.StateButtons[iState]).getPath(), (self.iButtonSpacing * iState) + (self.iButtonSpacing / 2), self.Y_LOWER_ROW, self.iButtonSize, self.iButtonSize, WidgetTypes.WIDGET_GENERAL, iState, -1 )
-				## R&R, Robert Surcouf,  Domestic Advisor Screen END
-				if (int(self.CurrentState) == iState):
-					RelativeButtonSize = 130
-					## R&R, Robert Surcouf,  Domestic Advisor Screen START
-					screen.setImageButton("HighlightButton", ArtFileMgr.getInterfaceArtInfo("INTERFACE_HIGHLIGHTED_BUTTON").getPath(), (self.iButtonSpacing * iState) + (self.iButtonSpacing / 2) - ((self.iButtonSize * RelativeButtonSize / 100) / 2) + (self.iButtonSize / 2), self.Y_LOWER_ROW - ((self.iButtonSize * RelativeButtonSize / 100) / 2) + (self.iButtonSize / 2), self.iButtonSize * RelativeButtonSize / 100, self.iButtonSize * RelativeButtonSize / 100, WidgetTypes.WIDGET_GENERAL, iState, -1 )
-				
-				
-				# auto-generated list creation - Nightinggale
-				# Added hardcoded button values 100 and 102
-				screen.setImageButton("MainLeftButton", ArtFileMgr.getInterfaceArtInfo(self.StateButtons[len(self.StateButtons)-2]).getPath(), 15, 20, 2*self.iButtonSize/3, 2*self.iButtonSize/3, WidgetTypes.WIDGET_GENERAL, 100, -1 )
-				screen.setImageButton("MainRightButton", ArtFileMgr.getInterfaceArtInfo(self.StateButtons[len(self.StateButtons)-1]).getPath(), self.nScreenWidth -50, 20, 2*self.iButtonSize/3, 2*self.iButtonSize/3, WidgetTypes.WIDGET_GENERAL, 102, -1 )
-			## R&R, Robert Surcouf,  Domestic Advisor Screen END
-	# Function to draw the contents of the cityList passed in
-	def drawContents (self):
-
+	def drawContents(self):
+        # Function to draw the contents of the cityList passed in
 		# Get the screen and the player
 		screen = CyGInterfaceScreen( "DomesticAdvisor", CvScreenEnums.DOMESTIC_ADVISOR )
 		player = gc.getPlayer(CyGame().getActivePlayer())
@@ -405,6 +386,27 @@ class CvDomesticAdvisor:
 		else:
 			screen.show(self.StatePages[self.CurrentState][self.CurrentPage] + "ListBackground")			
 		self.updateAppropriateCitySelection()
+
+	def drawButtons(self):
+		screen = CyGInterfaceScreen( "DomesticAdvisor", CvScreenEnums.DOMESTIC_ADVISOR )
+
+		for iState in range(len(self.StatePages)):
+			for PageName in self.StatePages[iState]:
+				szStateName = PageName + "ListBackground"
+				## R&R, Robert Surcouf,  Domestic Advisor Screen START
+				screen.setImageButton(szStateName + "Button", ArtFileMgr.getInterfaceArtInfo(self.StateButtons[iState]).getPath(), (self.iButtonSpacing * iState) + (self.iButtonSpacing / 2), self.Y_LOWER_ROW, self.iButtonSize, self.iButtonSize, WidgetTypes.WIDGET_GENERAL, iState, -1 )
+				## R&R, Robert Surcouf,  Domestic Advisor Screen END
+				if (int(self.CurrentState) == iState):
+					RelativeButtonSize = 130
+					## R&R, Robert Surcouf,  Domestic Advisor Screen START
+					screen.setImageButton("HighlightButton", ArtFileMgr.getInterfaceArtInfo("INTERFACE_HIGHLIGHTED_BUTTON").getPath(), (self.iButtonSpacing * iState) + (self.iButtonSpacing / 2) - ((self.iButtonSize * RelativeButtonSize / 100) / 2) + (self.iButtonSize / 2), self.Y_LOWER_ROW - ((self.iButtonSize * RelativeButtonSize / 100) / 2) + (self.iButtonSize / 2), self.iButtonSize * RelativeButtonSize / 100, self.iButtonSize * RelativeButtonSize / 100, WidgetTypes.WIDGET_GENERAL, iState, -1 )
+				
+				
+				# auto-generated list creation - Nightinggale
+				# Added hardcoded button values 100 and 102
+                ## R&R, Robert Surcouf,  Domestic Advisor Screen END
+				screen.setImageButton("MainLeftButton", ArtFileMgr.getInterfaceArtInfo(self.StateButtons[len(self.StateButtons)-2]).getPath(), 15, 20, 2*self.iButtonSize/3, 2*self.iButtonSize/3, WidgetTypes.WIDGET_GENERAL, 100, -1 )
+				screen.setImageButton("MainRightButton", ArtFileMgr.getInterfaceArtInfo(self.StateButtons[len(self.StateButtons)-1]).getPath(), self.nScreenWidth -50, 20, 2*self.iButtonSize/3, 2*self.iButtonSize/3, WidgetTypes.WIDGET_GENERAL, 102, -1 )
 
 	def updateCityTable(self, pLoopCity, i):
 		screen = CyGInterfaceScreen( "DomesticAdvisor", CvScreenEnums.DOMESTIC_ADVISOR )
@@ -723,7 +725,6 @@ class CvDomesticAdvisor:
 		elif( pCity.isHasBuilding(EducationBuildingGreatUniversityID) ):
 			EducationBuildingID = EducationBuildingGreatUniversityID
 		return EducationBuildingID
-
 		
 	def updateRouteTable(self, pRoute, iRoute, iRow):
 		screen = CyGInterfaceScreen("DomesticAdvisor", CvScreenEnums.DOMESTIC_ADVISOR)
@@ -882,7 +883,6 @@ class CvDomesticAdvisor:
 				bReusePath = true
 			self.RouteValidity.append(RouteValidArray)
 		
-		
 	def GetNativeCities(self):
 		# R&R, Robert Surcouf,  Domestic Advisor Screen - Start
 		if len(self.NativeCities) > 0:
@@ -915,7 +915,6 @@ class CvDomesticAdvisor:
 		screen.setTableColumnHeader( szStateName + "ListBackground", 0, "", (30 * self.nTableWidth) / self.nNormalizedTableWidth )
 		screen.setTableColumnHeader( szStateName + "ListBackground", 1, "<font=2>" + localText.getText("TXT_KEY_DOMESTIC_ADVISOR_NAME", ()) + "</font>", (221 * self.nTableWidth) / self.nNormalizedTableWidth )
 		
-		
 	def RebuildRouteTable (self):
 		if self.CurrentState != self.TRADEROUTE_STATE:
 			return
@@ -944,7 +943,6 @@ class CvDomesticAdvisor:
 
 		screen.appendTableRow( szTableName )
 		screen.setTableRowHeight(szTableName, len(self.Routes), self.ROW_HIGHT)
-	
 	
 	# Will handle the input for this screen...
 	def handleInput (self, inputClass):
@@ -1170,7 +1168,6 @@ class CvDomesticAdvisor:
 							screen.setTableRowHeight(szStateName, iLine, self.ROW_HIGHT)
 							screen.setTableText(szStateName, 3, iLine, "", szButton, WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY);
 						screen.setTableInt(szStateName, 4, iLine , "<font=2>" + infoPointer.getType() + "<font/>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
-					
 				
 	def getInfoPointerFromGameFont(self, iIndex):
 		for iYieldIndex in range(gc.getNumYieldInfos()):
@@ -1234,7 +1231,6 @@ class CvDomesticAdvisor:
 			if infoPointer.getMissionaryChar() > iMax:
 				iMax = infoPointer.getMissionaryChar()
 		return iMax
-		
 	
 	def createTable(self, szName):
 		self.getScreen().addTableControlGFC( szName, 7, (self.nScreenWidth - self.nTableWidth) / 2, 60, self.nTableWidth, self.nTableHeight, True, False, self.iCityButtonSize, self.iCityButtonSize, TableStyles.TABLE_STYLE_STANDARD )
