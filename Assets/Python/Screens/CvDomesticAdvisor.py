@@ -47,7 +47,9 @@ class CvDomesticAdvisor:
 	def __init__(self):
 		self.listSelectedCities = []
 		self.selectedSelectionGroupHeadUnitID = -1
-		self.educationArray = []
+		self.educationArrayLevel1 = []
+		self.educationArrayLevel2 = []
+		self.educationArrayLevel3 = []
 		
 	# Screen construction function
 	def interfaceScreen(self):
@@ -283,15 +285,14 @@ class CvDomesticAdvisor:
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 4, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_FOOD).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 5, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_FOOD).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 6, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_LUMBER).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 7, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_STONE).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 7, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_HAMMERS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 8, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_ORE).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 9, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GRAPES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 10, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GEMS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 11, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_SILVER).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 12, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_HAMMERS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 9, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_STONE).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 10, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GRAPES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 11, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GOLD).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 12, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GEMS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 13, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_TOOLS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 14, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CULTURE).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 15, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_BELLS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_WB_BUILDINGS", ()).upper() + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 3, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_EDUCATION).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
@@ -326,24 +327,36 @@ class CvDomesticAdvisor:
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 31, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_WHALE_OIL).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 32, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CATTLE).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 33, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_HIDES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 34, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_MUSKETS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 34, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_BEER).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_WB_BUILDINGS", ()).upper() + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 3, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_EDUCATION).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 4, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_MUSKETS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 5, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_MUSKETS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 6, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_MUSKETS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 7, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CROSSES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 8, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_BELLS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 9, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_HEALTH).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 10, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CROSSES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 11, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_TRADE_GOODS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 4, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CROSSES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 5, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_BELLS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 6, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_HEALTH).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 7, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_TRADE_GOODS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 8, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_MUSKETS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 9, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_MUSKETS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 10, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_MUSKETS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 
-		self.educationArray = [
+		self.educationArrayLevel1 = [
 								[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
 								[20, 25, 10, 31, 7, 8, 21, 26, 9, 46, 47]
 								]
+								
+		self.educationArrayLevel2 = [
+								[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
+								[11, 12, 13, 14, 15, 16, 17, 18, 19, 23, 24, 22, 27, 28, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 65]
+								]
+								
+
+		self.educationArrayLevel3 = [
+								[4, 5, 6, 7, 8, 9, 10],
+								[49, 50, 53, 56, 66, 68, 69]
+								]
+
+
 		self.drawContents()
 		
 	def drawContents(self):
@@ -477,19 +490,6 @@ class CvDomesticAdvisor:
 				elif iNetYield == 0:
 					szText = ""
 				screen.setTableInt(szState + "ListBackground", iYield - start + 2, i, "<font=1>" + szText + "<font/>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
-				
-#		elif(self.CurrentState == self.EDUCATION_STATE):
-#			start = self.YieldStart()
-#			for iYield in range(start, self.YieldEnd()):
-#				iNetYield = pLoopCity.calculateNetYield(iYield)
-#				szText = unicode(iNetYield)
-#				if iNetYield > 0:
-#					szText = localText.getText("TXT_KEY_COLOR_POSITIVE", ()) + u"+" + szText + localText.getText("TXT_KEY_COLOR_REVERT", ())
-#				elif iNetYield < 0:
-#					szText = localText.getText("TXT_KEY_COLOR_NEGATIVE", ()) + szText + localText.getText("TXT_KEY_COLOR_REVERT", ())
-#				elif iNetYield == 0:
-#					szText = ""
-#				screen.setTableInt(szState + "ListBackground", iYield - start + 2, i, "<font=1>" + szText + "<font/>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 				
 		elif(self.CurrentState == self.WAREHOUSE_STATE):
 #VET NewCapacity - begin 4/4
@@ -693,7 +693,7 @@ class CvDomesticAdvisor:
 					screen.setTextAt("CitizenProfession" + str(iRow) + "-" + str(iCitizen), "CitizenPanel" + str(iRow), u"<font=2>" + u"%c" %(CyGame().getSymbolID(FontSymbols.ANGRY_POP_CHAR))+ "</font>", CvUtil.FONT_RIGHT_JUSTIFY, iCitizen * iSpace +  (self.iCityButtonSize * 2 / 4) + self.iCityButtonSize/2, self.iCityButtonSize / 5, -0.3, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 				
 				# R&R, Robert Surcouf, Rebellion Fix END
-		elif(self.CurrentState == self.CITIZEN_STATE and self.CurrentPage >= 1):
+		elif(self.CurrentState == self.CITIZEN_STATE and self.CurrentPage == 1):
 			szState = self.StatePages[self.CurrentState][self.CurrentPage]
 
 			#Column 2 - Education Building
@@ -704,9 +704,7 @@ class CvDomesticAdvisor:
 			#Column 3 - Education Amount
 			screen.setTableInt(szState + "ListBackground", 3, iRow, "<font=2>" + unicode(pCity.calculateNetYield(YieldTypes.YIELD_EDUCATION)) + "</font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 
-			cellOffset = 4
 			teacherCount = pCity.getTeacherCount()
-			iSpace = 35
 			for iTeacher in range(0, teacherCount):
 				iType = pCity.getTeacherAtIndex(iTeacher)
 				print("Teachertype: %s - %d - %d" %(gc.getUnitInfo(iType).getDescription(),gc.getUnitInfo(iType).getUnitClassType(),pCity.getTeacherAtIndex(iTeacher)))
@@ -716,39 +714,158 @@ class CvDomesticAdvisor:
 				teacherColumn = 0
 				teacherUnitClassType = gc.getUnitInfo(iType).getUnitClassType()
 				print("getUnitClassType - %d" %(gc.getUnitInfo(iType).getUnitClassType()))
-				if self.educationArray[1][0] == teacherUnitClassType:
-					print("Found Farmer:")
-					teacherColumn = self.educationArray[0][0]
-				if self.educationArray[1][1] == teacherUnitClassType:
-					print("Found Fisher:")
-					teacherColumn = self.educationArray[0][1]
-				if self.educationArray[1][2] == teacherUnitClassType:
-					print("Found Holzfäller:")
-					teacherColumn = self.educationArray[0][2]
-				if self.educationArray[1][3] == teacherUnitClassType:
-					print("Found Zimmerer:")
-					teacherColumn = self.educationArray[0][3]
-				if self.educationArray[1][4] == teacherUnitClassType:
-					print("Found Minenarbeiter:")
-					teacherColumn = self.educationArray[0][4]
-				if self.educationArray[1][5] == teacherUnitClassType:
-					print("Found Steinmetz:")
-					teacherColumn = self.educationArray[0][5]
-				if self.educationArray[1][6] == teacherUnitClassType:
-					print("Found Traubensammler:")
-					teacherColumn = self.educationArray[0][6]
-				if self.educationArray[1][7] == teacherUnitClassType:
-					print("Found Perlentaucher:")
-					teacherColumn = self.educationArray[0][7]
-				if self.educationArray[1][8] == teacherUnitClassType:
-					print("Found Schürfer:")
-					teacherColumn = self.educationArray[0][8]
-				if self.educationArray[1][9] == teacherUnitClassType:
-					print("Found Pionier:")
-					teacherColumn = self.educationArray[0][9]
-				if self.educationArray[1][10] == teacherUnitClassType:
-					print("Found Späher:")
-					teacherColumn = self.educationArray[0][10]
+				if self.educationArrayLevel1[1][0] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][0]
+				if self.educationArrayLevel1[1][1] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][1]
+				if self.educationArrayLevel1[1][2] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][2]
+				if self.educationArrayLevel1[1][3] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][3]
+				if self.educationArrayLevel1[1][4] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][4]
+				if self.educationArrayLevel1[1][5] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][5]
+				if self.educationArrayLevel1[1][6] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][6]
+				if self.educationArrayLevel1[1][7] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][7]
+				if self.educationArrayLevel1[1][8] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][8]
+				if self.educationArrayLevel1[1][9] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][9]
+				if self.educationArrayLevel1[1][10] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel1[0][10]
+
+				print("Putting teacher at column: %s - %d" %(gc.getUnitInfo(iType).getDescription(),teacherColumn))
+				if teacherColumn == 0:
+					continue
+				screen.setTableInt(szState + "ListBackground", teacherColumn, iRow, "", gc.getUnitInfo(iType).getButton(), WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+
+		elif(self.CurrentState == self.CITIZEN_STATE and self.CurrentPage == 2):
+			szState = self.StatePages[self.CurrentState][self.CurrentPage]
+
+			#Column 2 - Education Building
+			EducationBuildingID = self.getEducationBuilding(pCity)
+			if( EducationBuildingID != -1 ):
+				screen.setTableInt(szState + "ListBackground", 2, iRow, "", gc.getBuildingInfo(EducationBuildingID).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, EducationBuildingID, -1, CvUtil.FONT_LEFT_JUSTIFY )
+			
+			#Column 3 - Education Amount
+			screen.setTableInt(szState + "ListBackground", 3, iRow, "<font=2>" + unicode(pCity.calculateNetYield(YieldTypes.YIELD_EDUCATION)) + "</font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+
+			teacherCount = pCity.getTeacherCount()
+			for iTeacher in range(0, teacherCount):
+				iType = pCity.getTeacherAtIndex(iTeacher)
+				print("Teachertype: %s - %d - %d" %(gc.getUnitInfo(iType).getDescription(),gc.getUnitInfo(iType).getUnitClassType(),pCity.getTeacherAtIndex(iTeacher)))
+				if iType == 0:
+					continue
+				
+				teacherColumn = 0
+				teacherUnitClassType = gc.getUnitInfo(iType).getUnitClassType()
+				print("getUnitClassType - %d" %(gc.getUnitInfo(iType).getUnitClassType()))
+				if self.educationArrayLevel2[1][0] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][0]
+				if self.educationArrayLevel2[1][1] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][1]
+				if self.educationArrayLevel2[1][2] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][2]
+				if self.educationArrayLevel2[1][3] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][3]
+				if self.educationArrayLevel2[1][4] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][4]
+				if self.educationArrayLevel2[1][5] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][5]
+				if self.educationArrayLevel2[1][6] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][6]
+				if self.educationArrayLevel2[1][7] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][7]
+				if self.educationArrayLevel2[1][8] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][8]
+				if self.educationArrayLevel2[1][9] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][9]
+				if self.educationArrayLevel2[1][10] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][10]
+				if self.educationArrayLevel2[1][11] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][11]
+				if self.educationArrayLevel2[1][12] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][12]
+				if self.educationArrayLevel2[1][13] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][13]
+				if self.educationArrayLevel2[1][14] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][14]
+				if self.educationArrayLevel2[1][15] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][15]
+				if self.educationArrayLevel2[1][16] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][16]
+				if self.educationArrayLevel2[1][17] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][17]
+				if self.educationArrayLevel2[1][18] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][18]
+				if self.educationArrayLevel2[1][19] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][19]
+				if self.educationArrayLevel2[1][20] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][20]
+				if self.educationArrayLevel2[1][21] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][21]
+				if self.educationArrayLevel2[1][22] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][22]
+				if self.educationArrayLevel2[1][23] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][23]
+				if self.educationArrayLevel2[1][24] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][24]
+				if self.educationArrayLevel2[1][25] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][25]
+				if self.educationArrayLevel2[1][26] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][26]
+				if self.educationArrayLevel2[1][27] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][27]
+				if self.educationArrayLevel2[1][28] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][28]
+				if self.educationArrayLevel2[1][29] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][29]
+				if self.educationArrayLevel2[1][30] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel2[0][30]
+
+				print("Putting teacher at column: %s - %d" %(gc.getUnitInfo(iType).getDescription(),teacherColumn))
+				if teacherColumn == 0:
+					continue
+				screen.setTableInt(szState + "ListBackground", teacherColumn, iRow, "", gc.getUnitInfo(iType).getButton(), WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+
+		elif(self.CurrentState == self.CITIZEN_STATE and self.CurrentPage == 3):
+			szState = self.StatePages[self.CurrentState][self.CurrentPage]
+
+			#Column 2 - Education Building
+			EducationBuildingID = self.getEducationBuilding(pCity)
+			if( EducationBuildingID != -1 ):
+				screen.setTableInt(szState + "ListBackground", 2, iRow, "", gc.getBuildingInfo(EducationBuildingID).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, EducationBuildingID, -1, CvUtil.FONT_LEFT_JUSTIFY )
+			
+			#Column 3 - Education Amount
+			screen.setTableInt(szState + "ListBackground", 3, iRow, "<font=2>" + unicode(pCity.calculateNetYield(YieldTypes.YIELD_EDUCATION)) + "</font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+
+			teacherCount = pCity.getTeacherCount()
+			for iTeacher in range(0, teacherCount):
+				iType = pCity.getTeacherAtIndex(iTeacher)
+				print("Teachertype: %s - %d - %d" %(gc.getUnitInfo(iType).getDescription(),gc.getUnitInfo(iType).getUnitClassType(),pCity.getTeacherAtIndex(iTeacher)))
+				if iType == 0:
+					continue
+				
+				teacherColumn = 0
+				teacherUnitClassType = gc.getUnitInfo(iType).getUnitClassType()
+				print("getUnitClassType - %d" %(gc.getUnitInfo(iType).getUnitClassType()))
+				if self.educationArrayLevel3[1][0] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel3[0][0]
+				if self.educationArrayLevel3[1][1] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel3[0][1]
+				if self.educationArrayLevel3[1][2] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel3[0][2]
+				if self.educationArrayLevel3[1][3] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel3[0][3]
+				if self.educationArrayLevel3[1][4] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel3[0][4]
+				if self.educationArrayLevel3[1][5] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel3[0][5]
+				if self.educationArrayLevel3[1][6] == teacherUnitClassType:
+					teacherColumn = self.educationArrayLevel3[0][6]
 
 				print("Putting teacher at column: %s - %d" %(gc.getUnitInfo(iType).getDescription(),teacherColumn))
 				if teacherColumn == 0:
