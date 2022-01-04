@@ -48,6 +48,16 @@ class CvDomesticAdvisor:
 		self.listSelectedCities = []
 		self.selectedSelectionGroupHeadUnitID = -1
 		
+	def create2D(rowCount, colCount, value=None):
+		"""
+		Create and return a 2D array having rowCount rows and colCount
+		columns, with each element initialized to value.
+		"""
+		a = [None] * rowCount
+		for row in range(rowCount):
+			a[row] = [value] * colCount
+		return a
+		
 	# Screen construction function
 	def interfaceScreen(self):
 		player = gc.getPlayer(gc.getGame().getActivePlayer())
