@@ -341,7 +341,7 @@ class CvDomesticAdvisor:
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 11, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_TRADE_GOODS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 
 		self.educationArray = [
-								[3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+								[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
 								[20, 25, 10, 31, 7, 8, 21, 26, 9, 46, 47]
 								]
 		self.drawContents()
@@ -696,24 +696,64 @@ class CvDomesticAdvisor:
 		elif(self.CurrentState == self.CITIZEN_STATE and self.CurrentPage >= 1):
 			szState = self.StatePages[self.CurrentState][self.CurrentPage]
 
-			ButtonSizePercentageProfession = 20
+			#Column 2 - Education Building
 			EducationBuildingID = self.getEducationBuilding(pCity)
-				
 			if( EducationBuildingID != -1 ):
 				screen.setTableInt(szState + "ListBackground", 2, iRow, "", gc.getBuildingInfo(EducationBuildingID).getButton(), WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, EducationBuildingID, -1, CvUtil.FONT_LEFT_JUSTIFY )
 			
+			#Column 3 - Education Amount
 			screen.setTableInt(szState + "ListBackground", 3, iRow, "<font=2>" + unicode(pCity.calculateNetYield(YieldTypes.YIELD_EDUCATION)) + "</font>", "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 
 			cellOffset = 4
 			teacherCount = pCity.getTeacherCount()
 			iSpace = 35
 			for iTeacher in range(0, teacherCount):
-#				print("Teachertype: %s - %d" %(gc.getUnitInfo(iType).getName(),pCity.getTeacherAtIndex(iTeacher)))
 				iType = pCity.getTeacherAtIndex(iTeacher)
-				print("Teachertype: %s - %s - %d" %(gc.getUnitInfo(iType).getDescription(),gc.getUnitInfo(iType).getUnitClassType(),pCity.getTeacherAtIndex(iTeacher)))
+				print("Teachertype: %s - %d - %d" %(gc.getUnitInfo(iType).getDescription(),gc.getUnitInfo(iType).getUnitClassType(),pCity.getTeacherAtIndex(iTeacher)))
 				if iType == 0:
 					continue
-				screen.setTableInt(szState + "ListBackground", cellOffset + iTeacher, iRow, "", gc.getUnitInfo(iType).getButton(), WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+				
+				teacherColumn = 0
+				teacherUnitClassType = gc.getUnitInfo(iType).getUnitClassType()
+				print("getUnitClassType - %d" %(gc.getUnitInfo(iType).getUnitClassType()))
+				if self.educationArray[1][0] == teacherUnitClassType:
+					print("Found Farmer:")
+					teacherColumn = self.educationArray[0][0]
+				if self.educationArray[1][1] == teacherUnitClassType:
+					print("Found Fisher:")
+					teacherColumn = self.educationArray[0][1]
+				if self.educationArray[1][2] == teacherUnitClassType:
+					print("Found Holzfäller:")
+					teacherColumn = self.educationArray[0][2]
+				if self.educationArray[1][3] == teacherUnitClassType:
+					print("Found Zimmerer:")
+					teacherColumn = self.educationArray[0][3]
+				if self.educationArray[1][4] == teacherUnitClassType:
+					print("Found Minenarbeiter:")
+					teacherColumn = self.educationArray[0][4]
+				if self.educationArray[1][5] == teacherUnitClassType:
+					print("Found Steinmetz:")
+					teacherColumn = self.educationArray[0][5]
+				if self.educationArray[1][6] == teacherUnitClassType:
+					print("Found Traubensammler:")
+					teacherColumn = self.educationArray[0][6]
+				if self.educationArray[1][7] == teacherUnitClassType:
+					print("Found Perlentaucher:")
+					teacherColumn = self.educationArray[0][7]
+				if self.educationArray[1][8] == teacherUnitClassType:
+					print("Found Schürfer:")
+					teacherColumn = self.educationArray[0][8]
+				if self.educationArray[1][9] == teacherUnitClassType:
+					print("Found Pionier:")
+					teacherColumn = self.educationArray[0][9]
+				if self.educationArray[1][10] == teacherUnitClassType:
+					print("Found Späher:")
+					teacherColumn = self.educationArray[0][10]
+
+				print("Putting teacher at column: %s - %d" %(gc.getUnitInfo(iType).getDescription(),teacherColumn))
+				if teacherColumn == 0:
+					continue
+				screen.setTableInt(szState + "ListBackground", teacherColumn, iRow, "", gc.getUnitInfo(iType).getButton(), WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 
 	def getEducationBuilding(self, pCity):
 		EducationBuildingSchoolhouseID = 94
