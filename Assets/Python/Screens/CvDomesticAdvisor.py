@@ -47,16 +47,7 @@ class CvDomesticAdvisor:
 	def __init__(self):
 		self.listSelectedCities = []
 		self.selectedSelectionGroupHeadUnitID = -1
-		
-	def create2D(rowCount, colCount, value=None):
-		"""
-		Create and return a 2D array having rowCount rows and colCount
-		columns, with each element initialized to value.
-		"""
-		a = [None] * rowCount
-		for row in range(rowCount):
-			a[row] = [value] * colCount
-		return a
+		self.educationArray = []
 		
 	# Screen construction function
 	def interfaceScreen(self):
@@ -349,6 +340,10 @@ class CvDomesticAdvisor:
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 10, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CROSSES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 11, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_TRADE_GOODS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 
+		self.educationArray = [
+								[3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+								[20, 25, 10, 31, 7, 8, 21, 26, 9, 46, 47]
+								]
 		self.drawContents()
 		
 	def drawContents(self):
