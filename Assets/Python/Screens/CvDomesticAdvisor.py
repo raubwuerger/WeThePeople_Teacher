@@ -142,8 +142,8 @@ class CvDomesticAdvisor:
 		self.StateButtons.append("INTERFACE_CITY_LEFT_ARROW")
 		self.StateButtons.append("INTERFACE_CITY_RIGHT_ARROW")
 		# Next Page / Previous Page
-		self.MAX_YIELDS_IN_A_PAGE = 18
-		self.MAX_BUILDINGS_IN_A_PAGE = 18
+		self.MAX_YIELDS_IN_A_PAGE = 31
+		self.MAX_BUILDINGS_IN_A_PAGE = 31
 		
 		self.WAREHOUSE_COLUMN_SIZE = (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH - self.iWareHouseW) / self.MAX_YIELDS_IN_A_PAGE
 		self.PRODUCTION_COLUMN_SIZE = (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / self.MAX_YIELDS_IN_A_PAGE
@@ -327,7 +327,7 @@ class CvDomesticAdvisor:
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 31, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_WHALE_OIL).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 32, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CATTLE).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 33, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_HIDES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 34, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_BEER).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][2] + "ListBackground", 34, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_BLADES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 2, "<font=2>" +  localText.getText("TXT_KEY_WB_BUILDINGS", ()).upper() + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][3] + "ListBackground", 3, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_EDUCATION).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
