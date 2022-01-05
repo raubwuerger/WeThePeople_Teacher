@@ -243,37 +243,14 @@ class CvDomesticAdvisor:
 		# Unhappiness from Tax Rate
 		screen.setTableColumnHeader( szListName, 16, "<font=2>" + (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_UNHAPPINESS).getChar()) +"(" +(u" %c" % CyGame().getSymbolID(FontSymbols.GOLD_CHAR)) +")" + "</font>", (self.nTableWidth - self.CITY_NAME_COLUMN_WIDTH) / 14 )
 
-		#WareHouseState Headers
-#VET NewCapacity - begin 3/4
-		for iYield in range(YieldTypes.YIELD_FOOD, YieldTypes.YIELD_LUXURY_GOODS + 1):
-			iYieldOnPage = iYield % self.MAX_YIELDS_IN_A_PAGE
-			iPage = iYield // self.MAX_YIELDS_IN_A_PAGE
-			self.createSubpage(self.WAREHOUSE_STATE, iPage)
-			screen.setTableColumnHeader( self.StatePages[self.WAREHOUSE_STATE][iPage] + "ListBackground", iYieldOnPage + 3, "<font=2> " + (u" %c" % gc.getYieldInfo(iYield).getChar()) + "</font>", (self.WAREHOUSE_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
-		
-		for PageName in self.StatePages[self.WAREHOUSE_STATE]:
-			screen.setTableColumnHeader( PageName + "ListBackground", 2, "<font=2>" + "MAX" + "</font>", self.iWareHouseW)
-		
 		# Headers for pages showing yields
-		for iState in [self.PRODUCTION_STATE, self.IMPORTEXPORT_STATE, self.TOTAL_PRODUCTION_STATE]: # total production page - Nightinggale
+		for iState in [self.TOTAL_PRODUCTION_STATE]: # total production page - Nightinggale
 			self.YieldPages.add(iState)
 			for iYield in range(YieldTypes.YIELD_FOOD, YieldTypes.YIELD_LUXURY_GOODS + 1):
 				iYieldOnPage = iYield % self.MAX_YIELDS_IN_A_PAGE
 				iPage = iYield // self.MAX_YIELDS_IN_A_PAGE
 				self.createSubpage(iState, iPage)
 				screen.setTableColumnHeader( self.StatePages[iState][iPage] + "ListBackground", iYieldOnPage + 2, "<font=2> " + (u" %c" % gc.getYieldInfo(iYield).getChar()) + "</font>", (self.PRODUCTION_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
-
-		# Building Headers
-		for iSpecial in range(gc.getNumSpecialBuildingInfos()):	
-			if (iSpecial != gc.getInfoTypeForString("SPECIALBUILDING_BELLS")):
-				iBuildingOnPage = (iSpecial-1) % self.MAX_BUILDINGS_IN_A_PAGE
-				iPage = (iSpecial-1) // self.MAX_BUILDINGS_IN_A_PAGE
-				self.createSubpage(self.BUILDING_STATE, iPage)
-				
-				if (iSpecial == gc.getInfoTypeForString("SPECIALBUILDING_WHALE_OIL")):
-					screen.setTableColumnHeader( self.StatePages[self.BUILDING_STATE][iPage] + "ListBackground", iBuildingOnPage + 2, "<font=2> " + (u" %c" %  gc.getYieldInfo(YieldTypes.YIELD_WHALE_OIL).getChar()) + "</font>", (self.BUILDING_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )				
-				else:
-					screen.setTableColumnHeader( self.StatePages[self.BUILDING_STATE][iPage] + "ListBackground", iBuildingOnPage + 2, "<font=2> " + (u" %c" %  gc.getSpecialBuildingInfo(iSpecial).getChar())         + "</font>", (self.BUILDING_COLUMN_SIZE * self.nTableWidth) / self.nNormalizedTableWidth )
 	
 		# Citizen Headers
 		self.createSubpage(self.CITIZEN_STATE, 3)
