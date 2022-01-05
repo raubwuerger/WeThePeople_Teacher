@@ -266,8 +266,8 @@ class CvDomesticAdvisor:
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 8, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_ORE).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 9, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_STONE).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 10, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GRAPES).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 11, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GOLD).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
-		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 12, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GEMS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 11, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GEMS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
+		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 12, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_GOLD).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 13, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_TOOLS).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 		screen.setTableColumnHeader( self.StatePages[self.CITIZEN_STATE][1] + "ListBackground", 14, "<font=2>" +  (u" %c" % gc.getYieldInfo(YieldTypes.YIELD_CULTURE).getChar()) + "</font>", CITIZEN_STATE_WIDTH )
 
